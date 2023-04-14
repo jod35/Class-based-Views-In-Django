@@ -1,0 +1,65 @@
+*{
+    font-family: 'Courier New', Courier, monospace;
+    padding: 0;
+    margin: 0;
+}
+header{
+    padding: 20px;
+    background-color: rgb(5, 43, 82);
+}
+header a{
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+
+}
+
+li{
+    list-style-type: none;
+    padding:20px;
+    background-color: #d0cfcf;
+    margin: 20px 10px;
+}
+
+li > a{
+    color: rgb(5, 43, 82);
+    font-weight: bold;
+}
+
+input,textarea{
+ width: 100%;
+}
+.container{
+    margin: 20px 80px;
+}
+
+input[type='text'],textarea{
+    border: none;
+    background-color: #d0cfcf;
+    padding: 15px 5px;
+}
+input[type="submit"]{
+    padding:12px;
+    color:white;
+    background-color: rgb(5, 43, 82);
+    font-size: 14px;
+    border-radius: 7px;
+}
+.actions{
+    margin:20px 5px;
+}
+
+.update-btn{
+    background-color: white;
+    text-decoration: none;
+    color: green;
+    padding: 10px;
+    border: 1px solid green;
+}
+.delete-btn{
+    background-color:white;
+    color: red;
+    border: 1px solid red;
+    padding: 8px;
+    text-decoration: none;
+}

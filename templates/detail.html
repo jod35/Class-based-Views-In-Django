@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
+   <div class="post-detail">
     <h1>{{task.name}}</h1>
     {{task.description}}
-    <br>
-    <a href="{% url 'update_task' task_id=task.id %}">Update Task</a>
-    <a href="{% url 'delete_task' task_id=task.id %}">Delete Task</a>
+        <div class="actions">
+            <a href="{% url 'update_task' task_id=task.id %}" class="update-btn">Update Task</a>
+            <a href="{% url 'delete_task' task_id=task.id %}" class="delete-btn">Delete Task</a>
+        </div>
+   </div>
 {% endblock content %}
     
