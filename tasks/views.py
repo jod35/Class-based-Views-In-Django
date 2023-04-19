@@ -78,3 +78,9 @@ class TaskDeleteView(View):
         task.delete()
 
         return redirect(reverse('homepage'))
+
+
+class SettingsViews(View):
+    template_name = 'settings.html'
+    def get(self,request):
+        return render(request,self.template_name)

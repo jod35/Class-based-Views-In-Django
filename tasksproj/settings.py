@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tasks'
+    'tasks',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -125,3 +126,15 @@ STATIC_ROOT = BASE_DIR / 'static'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+#login settings
+LOGIN_URL = "/auth/login/"
+LOGIN_REDIRECT_URL = '/'
+
+
+LOGOUT_URL = "/auth/logout/"
+LOGOUT_REDIRECT_URL = '/auth/login/'
+
+#EMAIL SETTINGS
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
