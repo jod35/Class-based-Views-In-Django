@@ -4,8 +4,8 @@
     <h1>{{task.name}}</h1>
     {{task.description}}
         <div class="actions">
-            <a href="{% url 'update_task' task_id=task.id %}" class="update-btn">Update Task</a>
-            <a href="{% url 'delete_task' task_id=task.id %}" class="delete-btn">Delete Task</a>
+            <a href="{% url 'update_task' pk=task.id %}" class="update-btn">Update Task</a>
+            <a href="{% url 'delete_task' pk=task.id %}" class="delete-btn">Delete Task</a>
         </div>
    </div>
 {% endblock content %}

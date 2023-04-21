@@ -3,81 +3,50 @@ from django.urls import reverse
 from .models import Task
 from .forms import TaskCreateForm
 from django.views import View
+from django.views.generic import(
+    #display
+    TemplateView,
+    ListView,
+    DetailView,
+
+
+    #edit 
+    FormView,
+    CreateView,
+    UpdateView,
+    DeleteView
+)
 
 # Create your views here.
-
-
-class HomePageView(View):
+class HomePageView(ListView):
     template_name = 'index.html'
-
-    def get(self, request):
-        tasks = Task.objects.all()
-        context = {
-            'tasks': tasks
-        }
-        return render(request, 'index.html', context)
+    model = Task
+    context_object_name = 'tasks'
 
 
-class TaskCreateView(View):
+class TaskCreateView(CreateView):
     template_name = 'add.html'
-    form_class = TaskCreateForm
-    initial = {'key': 'value'}
+    model = Task
+    success_url = '/'
+    fields = ['name','description']
 
-    def get(self, request):
-        return render(request, self.template_name,
-                      {'form': self.form_class(initial=self.initial)})
-
-    def post(self, request):
-        form = self.form_class(data=request.POST)
-
-        if form.is_valid():
-            form.save()
-
-            return redirect(reverse('homepage'))
-
-        return render(request, self.template_name,
-                      {'form': self.form_class(initial=self.initial)})
-
-
-class TaskDetailView(View):
+class TaskDetailView(DetailView):
+    model = Task
+    context_object_name = 'task'
     template_name = 'detail.html'
 
-    def get(self, request, task_id):
-        task = Task.objects.get(id=task_id)
-        return render(request, self.template_name, {'task': task})
 
-
-class TaskUpdateView(View):
+class TaskUpdateView(UpdateView):
     template_name = 'update.html'
-    form_class = TaskCreateForm
-
-    def get(self, request, task_id):
-        task = Task.objects.get(id=task_id)
-        form = self.form_class(instance=task)
-
-        return render(request, self.template_name, {'form': form})
-
-    def post(self, request, task_id):
-        task = Task.objects.get(id=task_id)
-        form = self.form_class(instance=task, data=request.POST)
-
-        if form.is_valid():
-            form.save()
-
-            return redirect(reverse('homepage'))
-
-        return render(request, self.template_name, {'form': form})
+    model = Task
+    fields = ['name','description']
+    success_url = '/'
 
 
-
-class TaskDeleteView(View):
-
-    def get(self, request, task_id):
-        task = Task.objects.get(id=task_id)
-
-        task.delete()
-
-        return redirect(reverse('homepage'))
+class TaskDeleteView(DeleteView):
+    template_name ='delete.html'
+    model = Task
+    success_url ='/'
 
 
 class SettingsViews(View):
